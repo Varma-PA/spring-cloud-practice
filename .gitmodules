@@ -1,0 +1,3 @@
+[submodule "git-config-server-repo"]
+	path = git-config-server-repo
+	url = https://github.com/Varma-PA/git-config-server-repo.git
