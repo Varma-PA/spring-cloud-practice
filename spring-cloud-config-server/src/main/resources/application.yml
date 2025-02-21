@@ -1,0 +1,14 @@
+server:
+  port: 8888
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: file:///Users/achyuthvarma/Developer/Spring-Cloud-Tutorial/git-localconfig-repo
+
+
+# Mac: file:///Users/achyuthvarma/Developer/Spring-Cloud-Tutorial/git-localconfig-repo
+# Windows: ...
+# /Users/achyuthvarma/Developer/Spring-Cloud-Tutorial/git-localconfig-repo

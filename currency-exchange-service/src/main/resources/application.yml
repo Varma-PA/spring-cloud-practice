@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: currency-exchange
+
+  config:
+    import: optional:configserver:http://localhost:8888
+
+  jpa:
+    show-sql: true
+    defer-datasource-initialization: true
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+
+  h2:
+    console:
+      enabled: true
+      path: /h2
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+
+server:
+  port: 8000
+
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0 # Tracing 100% of the requests that are coming to currency-exchange-service
+
+logging:
+  pattern:
+    level:%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]

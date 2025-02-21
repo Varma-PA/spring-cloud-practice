@@ -1,0 +1,43 @@
+services:
+  currency-exchange:
+    build: ./currency-exchange-service/.
+    ports:
+      - "8000:8000"
+    depends_on:
+      - naming-server
+    networks:
+      - currency-network
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+
+  currency-conversion:
+    build: ./currency-conversion-service/.
+    ports:
+      - "8100:8100"
+    depends_on:
+      - naming-server
+    networks:
+      - currency-network
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+
+  naming-server:
+    build: ./naming-server/.
+    ports:
+      - "8761:8761"
+    networks:
+      - currency-network
+
+  api-gateway:
+    build: ./api-gateway/.
+    ports:
+      - "8765:8765"
+    depends_on:
+      - naming-server
+    networks:
+      - currency-network
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+
+networks:
+  currency-network:
